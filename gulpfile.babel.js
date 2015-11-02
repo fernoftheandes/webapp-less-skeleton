@@ -86,7 +86,7 @@ gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 gulp.task('serve', ['styles', 'fonts'], () => {
   browserSync({
     notify: false,
-    port: 8000,
+    port: 9000,
     server: {
       baseDir: ['.tmp', 'app'],
       routes: {
@@ -111,7 +111,7 @@ gulp.task('serve', ['styles', 'fonts'], () => {
 gulp.task('serve:dist', () => {
   browserSync({
     notify: false,
-    port: 8000,
+    port: 9000,
     server: {
       baseDir: ['dist']
     }
@@ -121,7 +121,7 @@ gulp.task('serve:dist', () => {
 gulp.task('serve:test', () => {
   browserSync({
     notify: false,
-    port: 8000,
+    port: 9000,
     ui: false,
     server: {
       baseDir: 'test',
@@ -137,13 +137,6 @@ gulp.task('serve:test', () => {
 
 // inject bower components
 gulp.task('wiredep', () => {
-  // TODO: this piece might need adjustment/correction
-  gulp.src('app/styles/*.less')
-    .pipe(wiredep({
-        directory: 'app/bower_components'
-    }))
-    .pipe(gulp.dest('app/styles'));
-
   gulp.src('app/*.html')
     .pipe(wiredep({
       exclude: ['bootstrap.js'],
